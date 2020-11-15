@@ -193,6 +193,7 @@ export default class RNSketchCanvas extends React.Component {
 
   componentDidUpdate() {
     this._colorChanged = false
+    if(this.props.clearBoard) this._sketchCanvas.clear();
   }
 
   async componentDidMount() {
