@@ -9,10 +9,13 @@ import android.graphics.Paint;
 import android.graphics.PointF;
 import android.graphics.PorterDuff;
 import android.graphics.Rect;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+
 
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
@@ -416,6 +419,31 @@ public class SketchCanvas extends View {
                 canvas.drawText(text.text, text.drawPosition.x + text.lineOffset.x, text.drawPosition.y + text.lineOffset.y, text.paint);
             }
         }
+        //Resize
+        float aspectRatio = bitmap.getWidth() / 
+            (float) bitmap.getHeight();
+        int width = 50;
+        int height = Math.round(width / aspectRatio);
+
+        bitmap = Bitmap.createScaledBitmap(
+            bitmap, width, height, false);
+
+        bitmap = this.toGrayscale(bitmap);
         return bitmap;
+    }
+    public Bitmap toGrayscale(Bitmap bmpOriginal) {        
+        int width, height;
+        height = bmpOriginal.getHeight();
+        width = bmpOriginal.getWidth();    
+
+        Bitmap bmpGrayscale = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas c = new Canvas(bmpGrayscale);
+        Paint paint = new Paint();
+        ColorMatrix cm = new ColorMatrix();
+        cm.setSaturation(0);
+        ColorMatrixColorFilter f = new ColorMatrixColorFilter(cm);
+        paint.setColorFilter(f);
+        c.drawBitmap(bmpOriginal, 0, 0, paint);
+        return bmpGrayscale;
     }
 }
