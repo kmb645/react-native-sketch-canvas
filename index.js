@@ -16,6 +16,7 @@ export default class RNSketchCanvas extends React.Component {
     canvasStyle: ViewPropTypes.style,
     onStrokeStart: PropTypes.func,
     onStrokeChanged: PropTypes.func,
+    getBase64Img: PropTypes.func,
     onStrokeEnd: PropTypes.func,
     onClosePressed: PropTypes.func,
     onUndoPressed: PropTypes.func,
@@ -195,6 +196,11 @@ export default class RNSketchCanvas extends React.Component {
     this._colorChanged = false
     if(this.props.clearBoard) this._sketchCanvas.clear();
   }
+  getBase64(){
+    this._sketchCanvas.getBase64('jpeg', false, true, true, true, (err, res)=>{
+      this.props.getBase64Img(err, res);
+    });
+  }
 
   async componentDidMount() {
     if (this.props.promptForExternalWritePermissions) {
@@ -203,6 +209,7 @@ export default class RNSketchCanvas extends React.Component {
         this.props.permissionDialogMessage,
       );
     }
+    setTimeout(()=> this.getBase64(), 10000);
   }
 
   render() {
