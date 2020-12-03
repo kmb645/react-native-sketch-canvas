@@ -47,9 +47,9 @@ public class SketchCanvas extends View {
     private boolean mDisableHardwareAccelerated = false;
 
     private Paint mPaint = new Paint();
-    paint.setAntiAlias(true);
-    paint.setFilterBitmap(true);
-    paint.setDither(true);
+    mPaint.setAntiAlias(true);
+    mPaint.setFilterBitmap(true);
+    mPaint.setDither(true);
     
     private Bitmap mDrawingBitmap = null, mTranslucentDrawingBitmap = null;
     private Canvas mDrawingCanvas = null, mTranslucentDrawingCanvas = null;
@@ -390,8 +390,8 @@ public class SketchCanvas extends View {
 
     private Bitmap createImage(boolean transparent, boolean includeImage, boolean includeText, boolean cropToImageSize) {
         Bitmap bitmap = Bitmap.createBitmap(
-            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : 100,
-            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : 40, 
+            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : 100, //getWidth()
+            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : 40, // getHeight()
             Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawARGB(transparent ? 0 : 255, 255, 255, 255);
