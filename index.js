@@ -198,7 +198,7 @@ export default class RNSketchCanvas extends React.Component {
     if(this.props.classify) this.getBase64();
   }
   getBase64(){
-    this._sketchCanvas.getBase64('jpeg', false, true, true, true, (err, res)=>{
+    this._sketchCanvas.getBase64('jpeg', true, true, true, true, (err, res)=>{
       this.props.getBase64Img(err, res);
     });
   }
