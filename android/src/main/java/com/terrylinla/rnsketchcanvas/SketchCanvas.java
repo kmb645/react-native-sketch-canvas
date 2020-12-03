@@ -47,9 +47,9 @@ public class SketchCanvas extends View {
     private boolean mDisableHardwareAccelerated = false;
 
     private Paint mPaint = new Paint();
-    mPaint.setAntiAlias(true);
-    mPaint.setFilterBitmap(true);
-    mPaint.setDither(true);
+    mPaint.setAntiAlias(boolean true);
+    mPaint.setFilterBitmap(boolean true);
+    mPaint.setDither(boolean true);
     
     private Bitmap mDrawingBitmap = null, mTranslucentDrawingBitmap = null;
     private Canvas mDrawingCanvas = null, mTranslucentDrawingCanvas = null;
