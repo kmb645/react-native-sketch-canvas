@@ -419,17 +419,17 @@ public class SketchCanvas extends View {
                 canvas.drawText(text.text, text.drawPosition.x + text.lineOffset.x, text.drawPosition.y + text.lineOffset.y, text.paint);
             }
         }
-        //Resize
-        // float aspectRatio = bitmap.getWidth() / 
-        //     (float) bitmap.getHeight();
-        // int width = 200;
-        // int height = Math.round(width / aspectRatio);
+        // Resize
+        float aspectRatio = bitmap.getWidth() / 
+            (float) bitmap.getHeight();
+        int width = 100;
+        int height = Math.round(width / aspectRatio);
 
-        // bitmap = Bitmap.createScaledBitmap(
-        //     bitmap, width, height, false);
+        bitmap = Bitmap.createScaledBitmap(
+            bitmap, width, height, true);
 
         //bitmap = this.toGrayscale(bitmap);
-        bitmap = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.25), (int)(bitmap.getHeight()*0.25), true);
+        //bitmap = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.25), (int)(bitmap.getHeight()*0.25), true);
         return bitmap;
     }
     public Bitmap toGrayscale(Bitmap bmpOriginal) {        
