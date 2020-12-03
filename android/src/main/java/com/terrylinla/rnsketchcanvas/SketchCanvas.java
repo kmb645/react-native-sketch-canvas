@@ -420,13 +420,13 @@ public class SketchCanvas extends View {
             }
         }
         //Resize
-        float aspectRatio = bitmap.getWidth() / 
-            (float) bitmap.getHeight();
-        int width = 28;
-        int height = Math.round(width / aspectRatio);
+        // float aspectRatio = bitmap.getWidth() / 
+        //     (float) bitmap.getHeight();
+        // int width = 200;
+        // int height = Math.round(width / aspectRatio);
 
-        bitmap = Bitmap.createScaledBitmap(
-            bitmap, width, height, false);
+        // bitmap = Bitmap.createScaledBitmap(
+        //     bitmap, width, height, false);
 
         //bitmap = this.toGrayscale(bitmap);
         return bitmap;
