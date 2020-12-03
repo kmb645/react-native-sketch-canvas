@@ -47,9 +47,6 @@ public class SketchCanvas extends View {
     private boolean mDisableHardwareAccelerated = false;
 
     private Paint mPaint = new Paint();
-    mPaint.setAntiAlias(boolean true);
-    mPaint.setFilterBitmap(boolean true);
-    mPaint.setDither(boolean true);
     
     private Bitmap mDrawingBitmap = null, mTranslucentDrawingBitmap = null;
     private Canvas mDrawingCanvas = null, mTranslucentDrawingCanvas = null;
@@ -415,6 +412,9 @@ public class SketchCanvas extends View {
             //     bitmap.getWidth(), bitmap.getHeight(), "AspectFill").roundOut(targetRect);
             // canvas.drawBitmap(mDrawingBitmap, null, targetRect, mPaint);
         } else {
+            mPaint.setAntiAlias(true);
+            mPaint.setFilterBitmap(true);
+            mPaint.setDither(true);
             canvas.drawBitmap(mDrawingBitmap, 0, 0, mPaint);
         }
 
