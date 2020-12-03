@@ -422,7 +422,7 @@ public class SketchCanvas extends View {
         // Resize
         float aspectRatio = bitmap.getWidth() / 
             (float) bitmap.getHeight();
-        int width = 100;
+        int width = 366;
         int height = Math.round(width / aspectRatio);
 
         bitmap = Bitmap.createScaledBitmap(
