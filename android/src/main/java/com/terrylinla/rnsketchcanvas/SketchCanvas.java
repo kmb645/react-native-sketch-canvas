@@ -47,6 +47,10 @@ public class SketchCanvas extends View {
     private boolean mDisableHardwareAccelerated = false;
 
     private Paint mPaint = new Paint();
+    paint.setAntiAlias(true);
+    paint.setFilterBitmap(true);
+    paint.setDither(true);
+    
     private Bitmap mDrawingBitmap = null, mTranslucentDrawingBitmap = null;
     private Canvas mDrawingCanvas = null, mTranslucentDrawingCanvas = null;
 
@@ -386,8 +390,8 @@ public class SketchCanvas extends View {
 
     private Bitmap createImage(boolean transparent, boolean includeImage, boolean includeText, boolean cropToImageSize) {
         Bitmap bitmap = Bitmap.createBitmap(
-            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : getWidth(),
-            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : getHeight(), 
+            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : 100,
+            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : 40, 
             Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawARGB(transparent ? 0 : 255, 255, 255, 255);
@@ -411,7 +415,7 @@ public class SketchCanvas extends View {
             //     bitmap.getWidth(), bitmap.getHeight(), "AspectFill").roundOut(targetRect);
             // canvas.drawBitmap(mDrawingBitmap, null, targetRect, mPaint);
         } else {
-            // canvas.drawBitmap(mDrawingBitmap, 0, 0, mPaint);
+            canvas.drawBitmap(mDrawingBitmap, 0, 0, mPaint);
         }
 
         // if (includeText) {
