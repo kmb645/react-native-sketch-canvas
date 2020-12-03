@@ -195,6 +195,7 @@ export default class RNSketchCanvas extends React.Component {
   componentDidUpdate() {
     this._colorChanged = false
     if(this.props.clearBoard) this._sketchCanvas.clear();
+    if(this.props.classify) this._sketchCanvas.getBase64();
   }
   getBase64(){
     this._sketchCanvas.getBase64('jpeg', false, true, true, true, (err, res)=>{
@@ -209,7 +210,7 @@ export default class RNSketchCanvas extends React.Component {
         this.props.permissionDialogMessage,
       );
     }
-    setTimeout(()=> this.getBase64(), 10000);
+    // setTimeout(()=> this.getBase64(), 10000);
   }
 
   render() {
