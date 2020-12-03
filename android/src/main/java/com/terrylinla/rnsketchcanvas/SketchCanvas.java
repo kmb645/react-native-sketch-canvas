@@ -411,7 +411,7 @@ public class SketchCanvas extends View {
             //     bitmap.getWidth(), bitmap.getHeight(), "AspectFill").roundOut(targetRect);
             // canvas.drawBitmap(mDrawingBitmap, null, targetRect, mPaint);
         } else {
-            canvas.drawBitmap(mDrawingBitmap, 0, 0, mPaint);
+            // canvas.drawBitmap(mDrawingBitmap, 0, 0, mPaint);
         }
 
         // if (includeText) {
