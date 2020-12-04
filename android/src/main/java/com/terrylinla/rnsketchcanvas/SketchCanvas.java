@@ -309,10 +309,12 @@ public class SketchCanvas extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         if (getWidth() > 0 && getHeight() > 0) {
-            mDrawingBitmap = Bitmap.createBitmap(getWidth(), getHeight(),
+            int wid = (int) getWidth() * (int) 0.25;
+            int hid = (int) getHeight() * (int) 0.25;
+            mDrawingBitmap = Bitmap.createBitmap( wid, hid,// getWidth(), getHeight(),
                 Bitmap.Config.ARGB_8888);
             mDrawingCanvas = new Canvas(mDrawingBitmap);
-            mTranslucentDrawingBitmap = Bitmap.createBitmap(getWidth(), getHeight(),
+            mTranslucentDrawingBitmap = Bitmap.createBitmap(wid, hid,// getWidth(), getHeight(),
                     Bitmap.Config.ARGB_8888);
             mTranslucentDrawingCanvas = new Canvas(mTranslucentDrawingBitmap);
             
@@ -386,9 +388,11 @@ public class SketchCanvas extends View {
     }
 
     private Bitmap createImage(boolean transparent, boolean includeImage, boolean includeText, boolean cropToImageSize) {
+        int wid = (int) getWidth() * (int) 0.25;
+            int hid = (int) getHeight() * (int) 0.25;
         Bitmap bitmap = Bitmap.createBitmap(
-            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : getWidth(),
-            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : getHeight(),
+            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : wid,//getWidth(),
+            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : hid,//getHeight(),
             Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawARGB(transparent ? 0 : 255, 255, 255, 255);
