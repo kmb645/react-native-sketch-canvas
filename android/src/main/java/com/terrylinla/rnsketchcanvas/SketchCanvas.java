@@ -437,7 +437,7 @@ public class SketchCanvas extends View {
         //     bitmap, width, height, true);
 
         //bitmap = this.toGrayscale(bitmap);
-        bitmap = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.30), (int)(bitmap.getHeight()*0.30), true);
+        //bitmap = Bitmap.createScaledBitmap(bitmap,(int)(bitmap.getWidth()*0.30), (int)(bitmap.getHeight()*0.30), true);
         return bitmap;
     }
     public Bitmap toGrayscale(Bitmap bmpOriginal) {        
