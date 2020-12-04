@@ -309,12 +309,12 @@ public class SketchCanvas extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         if (getWidth() > 0 && getHeight() > 0) {
-            int wid = (int) getWidth() / (int) 4;
-            int hid = (int) getHeight() / (int) 4;
-            mDrawingBitmap = Bitmap.createBitmap( wid, hid,// getWidth(), getHeight(),
+            //int wid = (int) getWidth() / (int) 4;
+            //int hid = (int) getHeight() / (int) 4;
+            mDrawingBitmap = Bitmap.createBitmap( getWidth(), getHeight(),
                 Bitmap.Config.ARGB_8888);
             mDrawingCanvas = new Canvas(mDrawingBitmap);
-            mTranslucentDrawingBitmap = Bitmap.createBitmap(wid, hid,// getWidth(), getHeight(),
+            mTranslucentDrawingBitmap = Bitmap.createBitmap(getWidth(), getHeight(),
                     Bitmap.Config.ARGB_8888);
             mTranslucentDrawingCanvas = new Canvas(mTranslucentDrawingBitmap);
             
@@ -391,30 +391,30 @@ public class SketchCanvas extends View {
         int wid = (int) getWidth() / (int) 4;
             int hid = (int) getHeight() / (int) 4;
         Bitmap bitmap = Bitmap.createBitmap(
-            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : wid,//getWidth(),
-            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : hid,//getHeight(),
+            mBackgroundImage != null && cropToImageSize ? mOriginalWidth : getWidth(),
+            mBackgroundImage != null && cropToImageSize ? mOriginalHeight : getHeight(),
             Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         canvas.drawARGB(transparent ? 0 : 255, 255, 255, 255);
 
-        // if (mBackgroundImage != null && includeImage) {
-        //     Rect targetRect = new Rect();
-        //     Utility.fillImage(mBackgroundImage.getWidth(), mBackgroundImage.getHeight(), 
-        //         bitmap.getWidth(), bitmap.getHeight(), "AspectFit").roundOut(targetRect);
-        //     canvas.drawBitmap(mBackgroundImage, null, targetRect, null);
-        // }
+        if (mBackgroundImage != null && includeImage) {
+            Rect targetRect = new Rect();
+            Utility.fillImage(mBackgroundImage.getWidth(), mBackgroundImage.getHeight(), 
+                bitmap.getWidth(), bitmap.getHeight(), "AspectFit").roundOut(targetRect);
+            canvas.drawBitmap(mBackgroundImage, null, targetRect, null);
+        }
 
-        // if (includeText) {
-        //     for(CanvasText text: mArrSketchOnText) {
-        //         canvas.drawText(text.text, text.drawPosition.x + text.lineOffset.x, text.drawPosition.y + text.lineOffset.y, text.paint);
-        //     }
-        // }
+        if (includeText) {
+            for(CanvasText text: mArrSketchOnText) {
+                canvas.drawText(text.text, text.drawPosition.x + text.lineOffset.x, text.drawPosition.y + text.lineOffset.y, text.paint);
+            }
+        }
 
         if (mBackgroundImage != null && cropToImageSize) {
-            // Rect targetRect = new Rect();
-            // Utility.fillImage(mDrawingBitmap.getWidth(), mDrawingBitmap.getHeight(), 
-            //     bitmap.getWidth(), bitmap.getHeight(), "AspectFill").roundOut(targetRect);
-            // canvas.drawBitmap(mDrawingBitmap, null, targetRect, mPaint);
+            Rect targetRect = new Rect();
+            Utility.fillImage(mDrawingBitmap.getWidth(), mDrawingBitmap.getHeight(), 
+                bitmap.getWidth(), bitmap.getHeight(), "AspectFill").roundOut(targetRect);
+            canvas.drawBitmap(mDrawingBitmap, null, targetRect, mPaint);
         } else {
             // mPaint.setAntiAlias(true);
             // mPaint.setFilterBitmap(true);
@@ -422,11 +422,11 @@ public class SketchCanvas extends View {
             canvas.drawBitmap(mDrawingBitmap, 0, 0, mPaint);
         }
 
-        // if (includeText) {
-        //     for(CanvasText text: mArrTextOnSketch) {
-        //         canvas.drawText(text.text, text.drawPosition.x + text.lineOffset.x, text.drawPosition.y + text.lineOffset.y, text.paint);
-        //     }
-        // }
+        if (includeText) {
+            for(CanvasText text: mArrTextOnSketch) {
+                canvas.drawText(text.text, text.drawPosition.x + text.lineOffset.x, text.drawPosition.y + text.lineOffset.y, text.paint);
+            }
+        }
         // Resize
         // float aspectRatio = bitmap.getWidth() / 
         //     (float) bitmap.getHeight();
