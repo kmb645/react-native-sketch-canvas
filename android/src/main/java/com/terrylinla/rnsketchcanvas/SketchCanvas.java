@@ -309,8 +309,8 @@ public class SketchCanvas extends View {
         super.onSizeChanged(w, h, oldw, oldh);
 
         if (getWidth() > 0 && getHeight() > 0) {
-            int wid = (int) getWidth() * (int) 0.25;
-            int hid = (int) getHeight() * (int) 0.25;
+            int wid = (int) getWidth() / (int) 0.25;
+            int hid = (int) getHeight() / (int) 0.25;
             mDrawingBitmap = Bitmap.createBitmap( wid, hid,// getWidth(), getHeight(),
                 Bitmap.Config.ARGB_8888);
             mDrawingCanvas = new Canvas(mDrawingBitmap);
@@ -388,8 +388,8 @@ public class SketchCanvas extends View {
     }
 
     private Bitmap createImage(boolean transparent, boolean includeImage, boolean includeText, boolean cropToImageSize) {
-        int wid = (int) getWidth() * (int) 0.25;
-            int hid = (int) getHeight() * (int) 0.25;
+        int wid = (int) getWidth() / (int) 0.25;
+            int hid = (int) getHeight() / (int) 0.25;
         Bitmap bitmap = Bitmap.createBitmap(
             mBackgroundImage != null && cropToImageSize ? mOriginalWidth : wid,//getWidth(),
             mBackgroundImage != null && cropToImageSize ? mOriginalHeight : hid,//getHeight(),
