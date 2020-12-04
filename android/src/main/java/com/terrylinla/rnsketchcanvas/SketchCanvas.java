@@ -412,9 +412,9 @@ public class SketchCanvas extends View {
             //     bitmap.getWidth(), bitmap.getHeight(), "AspectFill").roundOut(targetRect);
             // canvas.drawBitmap(mDrawingBitmap, null, targetRect, mPaint);
         } else {
-            mPaint.setAntiAlias(true);
-            mPaint.setFilterBitmap(true);
-            mPaint.setDither(true);
+            // mPaint.setAntiAlias(true);
+            // mPaint.setFilterBitmap(true);
+            // mPaint.setDither(true);
             canvas.drawBitmap(mDrawingBitmap, 0, 0, mPaint);
         }
 
